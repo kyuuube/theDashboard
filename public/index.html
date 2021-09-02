@@ -1,17 +1,134 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
+<html lang="zh-cmn-Hans">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <style type="text/css">
+        html {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: #2b386e;
+            width: 100%;
+            height: 100%;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a img {
+            border: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .initializing {
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            padding-top: 100px;
+            width: 100%;
+            height: 100%;
+            background: #2b386e;
+            text-align: center;
+            transition: opacity 0.5s linear;
+            opacity: 1;
+        }
+
+        .initializing .initializing-logo {
+            width: 100%;
+            height: 200px;
+            /*background: transparent url("<%= htmlWebpackPlugin.options.assetsPublicPath %>static/img/logo_vertical.png") 0 0 no-repeat;*/
+            background-position: center top;
+        }
+
+        .initializing .initializing-spinner {
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .initializing .initializing-spinner > div {
+            border: 4px solid transparent;
+            border-radius: 50%;
+            border-top-color: rgb(204, 204, 204);
+            border-left-color: rgb(204, 204, 204);
+            border-bottom-color: rgb(204, 204, 204);
+            height: 32px;
+            width: 32px;
+            -webkit-animation: initializing-spinner-rotate 0.8s infinite linear;
+            animation: initializing-spinner-rotate 0.8s infinite linear;
+        }
+
+        @-webkit-keyframes initializing-spinner-rotate {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes initializing-spinner-rotate {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        .initializing[success] {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- 初始中 -->
+<div class="initializing">
+    <div class="initializing-logo"></div>
+    <span class="initializing-spinner"><div></div></span>
+    <div style='color: #fff'>加载中...</div>
+</div>
+<!--<canvas id="canv"></canvas>-->
+<script type="text/javascript">
+    // 初始页面
+    window.initSuccess = (function () {
+        var $initializing = document.getElementsByClassName('initializing')[0];
+        const canv = document.querySelector("#canv")
+        return function () {
+            $initializing.setAttribute('success', true);
+            setTimeout(function () {
+                $initializing.parentNode && $initializing.parentNode.removeChild($initializing);
+                canv.style.display = 'block'
+            }, 500);
+        };
+    })();
+</script>
+<!-- built files will be auto injected -->
+</body>
 </html>

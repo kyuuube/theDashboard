@@ -1,0 +1,33 @@
+@import 'src/style/index';
+.kc-dashboard {
+    .kc-dashboard-container {
+        display: flex;
+        z-index: 10;
+        margin-top: -16px;
+        padding: 0 16px;
+        .kc-dashboard-box-item {
+            width: 100%;
+            height: 630px;
+            margin-bottom: 23px;
+        }
+        .kc-dashboard-box-item-bottom {
+            width: 100%;
+            height: 320px;
+        }
+        .kc-dashboard-box-left {
+            flex: 1;
+            // 此处原以为改成百分比后不会出现子元素撑开容器宽度的问题，没想到其实跟overflow有关
+            //width: 25%;
+            overflow: hidden;
+        }
+        .kc-dashboard-box-middle {
+            flex: 2;
+            //width: 50%;
+        }
+        .kc-dashboard-box-right {
+            flex: 1;
+            //width: 25%;
+            overflow: hidden;
+        }
+    }
+}
