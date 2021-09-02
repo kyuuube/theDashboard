@@ -2,7 +2,7 @@ module.exports = {
     dev: {
         port: 1395,
         api: '/api',
-        target: '',
+        target: 'http://api.kyuuu.be',
         publicPath: "/",
         devtoolType: "source-map"
     },
@@ -10,6 +10,6 @@ module.exports = {
         publicPath: "/dashboard/",
         devtoolType: "source-map",
         staticPath: "static",
-        api: "",
+        api: "http://api.kyuuu.be",
     },
 }

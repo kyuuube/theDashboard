@@ -25,8 +25,7 @@ export default {
     },
     data() {
         return {
-            init: false,
-            levelPermission: null,
+            init: true,
         };
     },
     async created() {
