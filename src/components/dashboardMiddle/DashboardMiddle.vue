@@ -10,7 +10,5 @@ export default {
 </script>
 
 <style lang="less">
-.kc-dashboard-box-middle {
-    padding: 0 26px;
-}
+@import 'index';
 </style>

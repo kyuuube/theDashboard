@@ -13,4 +13,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+@import 'index';
+</style>
