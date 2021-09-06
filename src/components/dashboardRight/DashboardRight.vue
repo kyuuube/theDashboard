@@ -87,6 +87,24 @@
       <div class="box-right-body">
           <div class="group">
             <title-warp order="1">训练者选择</title-warp>
+            <div class="select-item">
+              <el-date-picker
+                  size="small"
+                  v-model="date"
+                  type="date"
+                  placeholder="选择日期">
+              </el-date-picker>
+            </div>
+            <div class="select-item">
+              <el-select v-model="people" placeholder="请选择" size="small">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
           </div>
           <div class="group">
             <title-warp order="2">训练者信息</title-warp>
@@ -123,6 +141,7 @@
           </div>
           <div class="group">
             <title-warp order="3">训练者下肢关节角度训练结果</title-warp>
+            <CarPaymentLineChart />
           </div>
       </div>
     </div>
@@ -132,14 +151,19 @@
 // components
 import TitleWarp from '../titleWarp/TitleWarp'
 import InfoGroupTwo from '../infoGroup/InfoGroup2'
+import CarPaymentLineChart from './children/carPaymentLineChart/CarPaymentLineChart'
 export default {
     name: 'dashboard-right',
     components: {
       TitleWarp,
-      InfoGroupTwo
+      InfoGroupTwo,
+      CarPaymentLineChart
     },
     data() {
         return {
+          date: null,
+          people: null,
+          options: [],
           leftArrowUrl: require('../../assets/images/leftArrow.png'),
           rightArrowUrl: require('../../assets/images/rightArrow.png')
         };
