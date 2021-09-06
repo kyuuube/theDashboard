@@ -6,6 +6,8 @@ import { resizeFontsize } from './utils';
 import * as utils from './utils';
 import eventBut from './utils/eventBut';
 import fetch from './utils/fetch';
+import 'element-ui/lib/theme-chalk/index.css';
+import './plugins/element.js'
 
 Vue.prototype.$utils = utils;
 Vue.prototype.$eventBut = eventBut;
