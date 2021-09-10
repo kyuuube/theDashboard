@@ -6,6 +6,9 @@
       <div class="title">
         <slot></slot>
       </div>
+      <div class="button-warp">
+        <slot name="button"></slot>
+      </div>
   </div>
 </template>
 
@@ -23,6 +26,7 @@ export default {
 
 <style lang="less">
 .title-warp {
+  position: relative;
   display: flex;
   height: 32px;
   width: 472px;
@@ -41,6 +45,25 @@ export default {
     background: #62A5FF;
     color: #FFFFFF;
     margin-right: 6px;
+  }
+  .button-warp {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -12px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    button {
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

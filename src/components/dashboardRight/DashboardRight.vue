@@ -86,7 +86,12 @@
       </div>
       <div class="box-right-body">
           <div class="group">
-            <title-warp order="1">训练者选择</title-warp>
+            <title-warp  order="1">
+              <span  >训练者选择</span>
+              <div slot="button">
+                  <img @click="delInfo" :src="delUrl" alt="">
+              </div>
+            </title-warp>
             <div class="select-item">
               <el-date-picker
                   size="small"
@@ -165,12 +170,42 @@ export default {
           people: null,
           options: [],
           leftArrowUrl: require('../../assets/images/leftArrow.png'),
-          rightArrowUrl: require('../../assets/images/rightArrow.png')
+          rightArrowUrl: require('../../assets/images/rightArrow.png'),
+          delUrl: require('../../assets/images/del.png')
         };
+    },
+    methods: {
+      async delInfo() {
+        console.log(222)
+        const confirm = await this.$msgbox.confirm('删除训练者信息会清空该训练者的训练信息！请谨慎操作。', '确认要删除这个训练者吗？', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+            .then(() => true)
+            .catch(() => false);
+        if (!confirm) {
+          return;
+        }
+      }
     }
 };
 </script>
 
 <style lang="less">
 @import 'index';
+.el-message-box {
+  background: #08316A !important;
+  box-shadow: 0px 12px 48px 16px rgb(0 0 0 / 12%), 0px 9px 28px 0px rgb(0 0 0 / 20%), 0px 6px 16px -8px rgb(0 0 0 / 32%) !important;
+  border-radius: 2px !important;
+  border: none !important;
+  .el-message-box__title {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+  }
+  .el-message-box__message {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
 </style>
