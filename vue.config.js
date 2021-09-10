@@ -8,6 +8,7 @@ module.exports = {
     devServer: {
         disableHostCheck: true,
         port: config.dev.port,
+        host: config.dev.host,
         proxy: {
             "/api": {
                 target: config.dev.target,

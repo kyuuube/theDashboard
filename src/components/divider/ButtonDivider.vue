@@ -28,6 +28,7 @@ export default {
   margin-top: 14px;
 }
 .wrap8 {
+  cursor: pointer;
   z-index: 105;
   height: 32px;
   border-width: 1px;

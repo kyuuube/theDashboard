@@ -90,7 +90,7 @@
             <info-group-one title="【产品名称】" description="可穿戴式下肢行走椅外骨骼" />
             <info-group-one title="【主要结构】" description="由大小腿U型穿戴环、膝关节、踝关节、大小腿杆、绑带等部分组成。" />
           </div>
-          <button-divider/>
+          <button-divider @click.native="showDescriptionDialog = true"/>
           <div class="group">
             <title-warp order="2">训练示范图</title-warp>
             <div class="tips">
@@ -99,7 +99,7 @@
             </div>
             <div class="group-pictures">
                 <div class="picture-item" :key="index" v-for="(item, index) in pictureList">
-                    <div class="images-warp">
+                    <div class="images-warp" @click="preview(item)">
                       <img :src="item.url" :alt="item.name">
                       <div class="mask"></div>
                     </div>
@@ -109,12 +109,14 @@
           </div>
           <div class="group">
             <title-warp order="3">训练示范视频</title-warp>
-            <div class="video-preview">
+            <div class="video-preview" @click="showVideoDialog = true">
               <div class="mask" />
               <img :src="previewUrl" alt="">
             </div>
           </div>
         </div>
+      <video-dialog v-if="showVideoDialog" v-model="showVideoDialog"></video-dialog>
+      <description-dialog v-if="showDescriptionDialog" v-model="showDescriptionDialog"></description-dialog>
     </div>
 </template>
 
@@ -123,12 +125,18 @@
 import TitleWarp from '../titleWarp/TitleWarp'
 import InfoGroupOne from "../infoGroup/InfoGroup1";
 import ButtonDivider from "../divider/ButtonDivider";
+import VideoDialog from "./components/VideoDialog";
+import DescriptionDialog from "./components/DescriptionDialog";
+// utils
+import viewer from '../../utils/viewer'
 export default {
     name: 'dashboard-left',
     components: {
       InfoGroupOne,
       ButtonDivider,
-      TitleWarp
+      TitleWarp,
+      VideoDialog,
+      DescriptionDialog,
     },
     data() {
         return {
@@ -151,9 +159,17 @@ export default {
           ],
           leftArrowUrl: require('../../assets/images/leftArrow.png'),
           rightArrowUrl: require('../../assets/images/rightArrow.png'),
-          previewUrl: require('../../assets/images/preview.png')
+          previewUrl: require('../../assets/images/preview.png'),
+          showVideoDialog: false,
+          showDescriptionDialog: false,
         };
     },
+    methods: {
+      viewer,
+      preview(item) {
+        this.viewer({src: item.url, srcs: this.pictureList.map(i => i.url)})
+      }
+    }
 };
 </script>
 

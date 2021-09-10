@@ -1,5 +1,6 @@
 module.exports = {
     dev: {
+        host: '0.0.0.0',
         port: 1395,
         api: '/api',
         target: 'http://api.kyuuu.be',
