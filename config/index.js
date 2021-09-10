@@ -3,7 +3,7 @@ module.exports = {
         host: '0.0.0.0',
         port: 1395,
         api: '/api',
-        target: 'http://api.kyuuu.be',
+        target: 'http://159.75.80.54:8709/',
         publicPath: "/",
         devtoolType: "source-map"
     },
@@ -11,6 +11,6 @@ module.exports = {
         publicPath: "/dashboard/",
         devtoolType: "source-map",
         staticPath: "static",
-        api: "http://api.kyuuu.be",
+        api: "http://159.75.80.54:8709/",
     },
 }

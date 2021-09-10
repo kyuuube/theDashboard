@@ -6,7 +6,7 @@
             <dashboard-middle />
             <dashboard-right />
         </div>
-      <img class="bottom-picture" :src="bottomPicture" alt="">
+        <img class="bottom-picture" :src="bottomPicture" alt="" />
     </div>
 </template>
 
@@ -27,11 +27,10 @@ export default {
     data() {
         return {
             init: true,
-            bottomPicture: require('../assets/images/middleBg.png')
+            bottomPicture: require('../assets/images/middleBg.png'),
         };
     },
-    async created() {
-    },
+    async created() {},
 };
 </script>
 
