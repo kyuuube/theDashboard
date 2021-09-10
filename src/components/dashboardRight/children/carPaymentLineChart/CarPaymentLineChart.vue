@@ -39,9 +39,14 @@ let option = {
         type: 'solid',
       },
     },
-    formatter: function (params) {
-      return params[0].name + '<br/>' + '收费：' + params[0].value;
+  },
+  legend: {
+    textStyle: {
+      color: 'rgba(143, 168, 201, 1)',
+      fontSize: utils.nowSize(10),
     },
+    left: '0%',
+    data: ['髋关节', '膝关节', '踝关节']
   },
   grid: {
     left: '5',
@@ -65,10 +70,9 @@ let option = {
         color: '#222C67',
       },
     },
-    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+    data: ['0s', '20s', '40s', '60s', '80s', '100s']
   },
   yAxis: {
-    name: '单位:元',
     nameTextStyle: {
       fontFamily: 'SyhtNormal',
       fontSize: utils.nowSize(13),
@@ -82,6 +86,7 @@ let option = {
       fontSize: utils.nowSize(13),
       fontWeight: 400,
       color: '#ffffff',
+      formatter: '{value} °'
     },
     axisLine: {
       lineStyle: {
@@ -89,7 +94,6 @@ let option = {
       },
     },
     splitLine: {
-      show: false,
       lineStyle: {
         color: '#222C67',
       },
@@ -97,6 +101,7 @@ let option = {
   },
   series: [
     {
+      name: '髋关节',
       showSymbol: false,
       lineStyle: {
         color: '#280aea',
@@ -127,8 +132,81 @@ let option = {
         borderColor: 'rgba(37, 91, 218, 1)',
         borderWidth: 12,
       },
-      data: [1,2,3,4,5,6,7,8],
+      data: [40,20,30,4,-90,-60,-76,-8],
       type: 'line',
+      smooth: true
+    },
+    {
+      name: '膝关节',
+      showSymbol: false,
+      lineStyle: {
+        color: '#2cb7c4',
+        width: 2,
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(
+            0,
+            0,
+            0,
+            1,
+            [
+              {
+                offset: 0,
+                color: 'rgba(44, 183, 192, .8)',
+              },
+              {
+                offset: 0.8,
+                color: 'rgba(44, 183, 192, .2)',
+              },
+            ],
+            false
+        ),
+        shadowColor: 'rgba(0, 0, 0, 0.1)',
+      },
+      itemStyle: {
+        color: '#255BDA',
+        borderColor: 'rgba(93, 112, 146, 1)',
+        borderWidth: 12,
+      },
+      data: [12,20,100,40,-5,-60,-44,-68],
+      type: 'line',
+      smooth: true
+    },
+    {
+      name: '踝关节',
+      showSymbol: false,
+      lineStyle: {
+        color: '#b4bcbd',
+        width: 2,
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(
+            0,
+            0,
+            0,
+            1,
+            [
+              {
+                offset: 0,
+                color: 'rgba(180, 188, 189, .8)',
+              },
+              {
+                offset: 0.8,
+                color: 'rgba(180, 188, 189, .2)',
+              },
+            ],
+            false
+        ),
+        shadowColor: 'rgba(0, 0, 0, 0.1)',
+      },
+      itemStyle: {
+        color: '#255BDA',
+        borderColor: 'rgba(93, 112, 146, 1)',
+        borderWidth: 12,
+      },
+      data: [20,40,50,40,-25,-66,-23,-1],
+      type: 'line',
+      smooth: true
     },
   ],
 };

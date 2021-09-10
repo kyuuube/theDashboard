@@ -168,7 +168,7 @@ export default {
         return {
           date: null,
           people: null,
-          options: [],
+          options: [{label: '111', value: 1}, {label: '222', value: 2}],
           leftArrowUrl: require('../../assets/images/leftArrow.png'),
           rightArrowUrl: require('../../assets/images/rightArrow.png'),
           delUrl: require('../../assets/images/del.png')
@@ -207,5 +207,31 @@ export default {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.65);
   }
+}
+.el-picker-panel {
+   background-color: #283a61 !important;
+   color: #848892 !important;
+   border: none !important;
+}
+.el-date-picker__header .el-date-picker__header-label, .el-date-picker__header button {
+  color: #FFFFFF !important;
+}
+.el-date-table th {
+  color: #606266;
+  border-bottom: solid 1px #5c6477;
+}
+.el-select-dropdown {
+  background-color: rgba(40, 58, 97, 1) !important;
+  border: none !important;
+  padding: 0;
+  .el-select-dropdown__item {
+    color: rgba(143, 168, 201, 1);
+  }
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+  background-color: #415a90 !important;
+}
+.el-popper .popper__arrow::after, .el-popper .popper__arrow  {
+  border-bottom-color: rgba(40, 58, 97, 1) !important;
 }
 </style>
