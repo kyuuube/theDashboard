@@ -1,5 +1,5 @@
 /* eslint-disable */
-// import { Message } from 'element-ui';
+import { Message } from 'element-ui';
 // import store from '@/store';
 // import * as $account from '@/store/modules/account/types';
 

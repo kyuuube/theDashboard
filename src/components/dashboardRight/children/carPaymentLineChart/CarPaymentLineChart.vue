@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import * as api from '../../../../apis/api';
+
 const echarts = require('echarts');
 import * as utils from '../../../../utils';
 let option = {
@@ -60,6 +62,7 @@ let option = {
     xAxis: {
         type: 'category',
         boundaryGap: false,
+        splitNumber: 5,
         axisLabel: {
             fontFamily: 'SyhtNormal',
             fontSize: utils.nowSize(13),
@@ -72,7 +75,7 @@ let option = {
                 color: '#222C67',
             },
         },
-        data: ['0s', '20s', '40s', '60s', '80s', '100s'],
+        data: [],
     },
     yAxis: {
         nameTextStyle: {
@@ -134,7 +137,7 @@ let option = {
                 borderColor: 'rgba(37, 91, 218, 1)',
                 borderWidth: 12,
             },
-            data: [40, 20, 30, 4, -90, -60, -76, -8],
+            data: [],
             type: 'line',
             smooth: true,
         },
@@ -170,7 +173,7 @@ let option = {
                 borderColor: 'rgba(93, 112, 146, 1)',
                 borderWidth: 12,
             },
-            data: [12, 20, 100, 40, -5, -60, -44, -68],
+            data: [],
             type: 'line',
             smooth: true,
         },
@@ -206,7 +209,7 @@ let option = {
                 borderColor: 'rgba(93, 112, 146, 1)',
                 borderWidth: 12,
             },
-            data: [20, 40, 50, 40, -25, -66, -23, -1],
+            data: [],
             type: 'line',
             smooth: true,
         },
@@ -219,10 +222,22 @@ export default {
         return {
             init: false,
             loading: false,
-
             autoActionTimer: null,
             tipsIndex: 0,
         };
+    },
+    methods: {
+        async loadChartData(id) {
+            const { result } = await this.$fetch(api.getDetail, id);
+            console.log(result);
+            option.series[0].data = result.chartList.map((i) => i.hipAngle);
+            option.series[1].data = result.chartList.map((i) => i.kneeAngle);
+            option.series[2].data = result.chartList.map((i) => i.ankleAngle);
+            console.log(result.chartList.map((i) => i.second));
+            option.xAxis.data = result.chartList.map((i) => i.second);
+            console.log(option);
+            chart.setOption(option);
+        },
     },
     mounted() {
         chart = echarts.init(document.getElementById('car-payment-line-chart'));

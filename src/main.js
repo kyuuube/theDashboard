@@ -8,11 +8,13 @@ import eventBut from './utils/eventBut';
 import fetch from './utils/fetch';
 import 'element-ui/lib/theme-chalk/index.css';
 import './plugins/element.js';
+const dayjs = require('dayjs');
 
 Vue.prototype.$utils = utils;
 Vue.prototype.$eventBut = eventBut;
 Vue.prototype.$fetch = fetch;
 Vue.config.productionTip = false;
+Vue.prototype.$dayjs = dayjs;
 resizeFontsize();
 router.beforeResolve((to, from, next) => {
     setTimeout(() => {

@@ -90,13 +90,12 @@
                         size="small"
                         v-model="date"
                         type="date"
-                        value-format="yyyy-MM-DD"
                         placeholder="选择日期"
                     >
                     </el-date-picker>
                 </div>
                 <div class="select-item">
-                    <el-select v-model="people" placeholder="请选择" size="small">
+                    <el-select v-model="people" @change="changePeople" placeholder="请选择" size="small">
                         <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item"> </el-option>
                     </el-select>
                 </div>
@@ -120,7 +119,7 @@
                         <span class="word17">职业</span>
                     </div>
                     <div class="layer32 flex-row">
-                        <span class="word18">{{ (people && people.height + 'cm') || '' }}</span>
+                        <span class="word18">{{  people && people.hight ? `${people.hight}cm` : '' }}</span>
                         <span class="txt10">{{ (people && people.health) || '' }}</span>
                         <span class="word19">{{ (people && people.profession) || '' }}</span>
                     </div>
@@ -136,7 +135,7 @@
             </div>
             <div class="group">
                 <title-warp order="3">训练者下肢关节角度训练结果</title-warp>
-                <CarPaymentLineChart />
+                <CarPaymentLineChart ref="chart" />
             </div>
         </div>
     </div>
@@ -160,32 +159,7 @@ export default {
         return {
             date: null,
             people: null,
-            options: [
-                {
-                    age: 0,
-                    createTime: 'string',
-                    health: 'string',
-                    hight: 0,
-                    id: 0,
-                    name: 'string',
-                    profession: 'string',
-                    remark: 'string',
-                    sex: 'string',
-                    work: 'string',
-                },
-                {
-                    age: 0,
-                    createTime: 'string',
-                    health: 'string',
-                    hight: 0,
-                    id: 2,
-                    name: 'string',
-                    profession: 'string',
-                    remark: 'string',
-                    sex: 'string',
-                    work: 'string',
-                },
-            ],
+            options: [],
             leftArrowUrl: require('../../assets/images/leftArrow.png'),
             rightArrowUrl: require('../../assets/images/rightArrow.png'),
             delUrl: require('../../assets/images/del.png'),
@@ -208,11 +182,13 @@ export default {
             this.people = null
         },
         async pickDate() {
-            const { result } = await this.$fetch(api.getUserByDate, { date: this.date }).catch((e) => e);
-            console.log(result)
+            const { result } = await this.$fetch(api.getUserByDate, { date: this.$dayjs(this.date).format('YYYY-MM-DD') })
             this.options = result
         },
-    },
+        changePeople(item) {
+            this.$refs.chart.loadChartData(item.id)
+        }
+    }
 };
 </script>
 
