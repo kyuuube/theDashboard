@@ -16,7 +16,7 @@
                 <!--                <button @click="upload" class="outer2 flex-col">-->
                 <!--                    <span class="txt2">新增训练者</span>-->
                 <!--                </button>-->
-                <button class="outer3 flex-col">
+                <button @click="download" class="outer3 flex-col">
                     <span class="word1">下载模板</span>
                 </button>
                 <div class="outer4 flex-col"></div>
@@ -64,6 +64,18 @@ export default {
             upLoadUrl: '/api/import',
         };
     },
+    methods:{
+      download() {
+        let link = document.createElement('a');
+        link.href = 'https://raw.githubusercontent.com/surmon-china/vue-video-player/master/examples/01-video.vue' // 创建下载的链接
+        link.download = '02-video.vue'; // 下载后文件名
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click(); // 点击下载
+        window.URL.revokeObjectURL(link.href); // 释放掉blob对象
+        document.body.removeChild(link); // 下载完成移除元素
+      }
+    }
 };
 </script>
 
